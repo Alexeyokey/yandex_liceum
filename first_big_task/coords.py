@@ -34,9 +34,9 @@ def get_ll_span(address, dx, dy):
     spn = f'{dx},{dy}'
     return ll, spn
 
-
-ll, spn = get_ll_span("Австралия", 1, 1)
-print(f"https://static-maps.yandex.ru/1.x/?lang=ru_RU&ll={ll}&spn={spn}&l=map")
+#
+# ll, spn = get_ll_span("55.713010, 37.660449", 0.1, 0.1)
+# print(f"https://static-maps.yandex.ru/1.x/?lang=ru_RU&ll={ll}&spn={spn}&l=map")
 
 
 if __name__ == "__main__":
@@ -55,10 +55,13 @@ if __name__ == "__main__":
     running = True
     draw_cir = False
     position = (0, 0)
-    coords = []
+    # coords = []
     position = pygame.Vector2((0, 0))
     flag = 0
-    response = requests.get('https://static-maps.yandex.ru/1.x/?lang=ru_RU&ll=133.795393,-25.694776&spn=43.11026699999999,22.890216000000002&l=sat')
+    coords = input().split(', ')
+    spn = input().split()
+    # coords = [coords[1], coords[0]]
+    response = requests.get(f'https://static-maps.yandex.ru/1.x/?lang=ru_RU&ll={coords[1]},{coords[0]}&spn={spn[0]},{spn[1]}&l=sat')
     img = pygame.image.load(BytesIO(response.content))
     while running:
         for event in pygame.event.get():
