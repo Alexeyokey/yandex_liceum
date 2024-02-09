@@ -58,14 +58,14 @@ if __name__ == "__main__":
     # coords = []
     position = pygame.Vector2((0, 0))
     flag = 0
-    coords = input().split(', ')
+    coords = input("Введите координаты в формате: \n55.713010, 37.660449").split(', ')
     spn = (1, 1)
     # coords = [coords[1], coords[0]]
     response = requests.get(f'https://static-maps.yandex.ru/1.x/?lang=ru_RU&ll={coords[1]},{coords[0]}&spn={spn[0]},{spn[1]}&l=sat')
     img = pygame.image.load(BytesIO(response.content))
-    f1 = pygame.font.Font(None, 36)
-    text1 = f1.render('Введите координаты в формате: \n55.713010, 37.660449', True,
-                      (255, 255, 255))
+    # f1 = pygame.font.Font(None, 36)
+    # text1 = f1.render('Введите координаты в формате: \n55.713010, 37.660449', True,
+    #                   (255, 255, 255))
     while running:
         for event in pygame.event.get():
             screen2 = pygame.Surface(screen.get_size())
@@ -82,7 +82,7 @@ if __name__ == "__main__":
         screen2.fill(pygame.Color('black'))
         screen2.blit(img, (0,0))
         screen.blit(screen2, (0, 0))
-        screen.blit(text1, (0, 500))
+        # screen.blit(text1, (0, 500))
         pygame.display.flip()
         clock.tick(fps)
 
