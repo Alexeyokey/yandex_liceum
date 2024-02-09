@@ -58,7 +58,7 @@ if __name__ == "__main__":
     # coords = []
     position = pygame.Vector2((0, 0))
     flag = 0
-    coords = input("Введите координаты в формате: \n55.713010, 37.660449\nИспользуйте page up и page down\n для изменения маштаба").split(', ')
+    coords = input("Введите координаты в формате: \n55.713010, 37.660449\nИспользуйте page up и page down\n для изменения маштаба\n").split(', ')
     spn = [10, 10]
     # coords = [coords[1], coords[0]
     response = requests.get(

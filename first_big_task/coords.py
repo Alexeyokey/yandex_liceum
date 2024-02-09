@@ -58,7 +58,7 @@ if __name__ == "__main__":
     # coords = []
     position = pygame.Vector2((0, 0))
     flag = 0
-    coords = input("Введите координаты в формате: \n55.713010, 37.660449").split(', ')
+    coords = input("Введите координаты в формате: \n55.713010, 37.660449\n").split(', ')
     spn = (1, 1)
     # coords = [coords[1], coords[0]]
     response = requests.get(f'https://static-maps.yandex.ru/1.x/?lang=ru_RU&ll={coords[1]},{coords[0]}&spn={spn[0]},{spn[1]}&l=sat')
