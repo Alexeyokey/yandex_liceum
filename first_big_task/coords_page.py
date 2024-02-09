@@ -59,10 +59,10 @@ if __name__ == "__main__":
     position = pygame.Vector2((0, 0))
     flag = 0
     coords = input().split(', ')
-    spn = [1, 1]
+    spn = [10, 10]
     # coords = [coords[1], coords[0]
     response = requests.get(
-        f'https://static-maps.yandex.ru/1.x/?lang=ru_RU&ll={coords[1]},{coords[0]}&spn={spn[0]},{spn[1]}&l=sat')
+        f'https://static-maps.yandex.ru/1.x/?lang=ru_RU&ll={coords[1]},{coords[0]}&spn={spn[0]/10},{spn[1]/10}&l=sat')
     while running:
         for event in pygame.event.get():
             screen2 = pygame.Surface(screen.get_size())
@@ -70,15 +70,18 @@ if __name__ == "__main__":
                 running = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_PAGEUP:
-                    spn[0] -= 1
-                    spn[1] -= 1
-                    response = requests.get(
-                        f'https://static-maps.yandex.ru/1.x/?lang=ru_RU&ll={coords[1]},{coords[0]}&spn={spn[0]},{spn[1]}&l=sat')
+                    if spn[0] >= 5:
+                        print(spn[0])
+                        spn[0] -= 5
+                        spn[1] -= 5
+                        response = requests.get(
+                            f'https://static-maps.yandex.ru/1.x/?lang=ru_RU&ll={coords[1]},{coords[0]}&spn={spn[0]/10},{spn[1]/10}&l=sat')
                 elif event.key == pygame.K_PAGEDOWN:
-                    spn[0] += 1
-                    spn[1] += 1
-                    response = requests.get(
-                        f'https://static-maps.yandex.ru/1.x/?lang=ru_RU&ll={coords[1]},{coords[0]}&spn={spn[0]},{spn[1]}&l=sat')
+                    if spn[0] < 50:
+                        spn[0] += 5
+                        spn[1] += 5
+                        response = requests.get(
+                            f'https://static-maps.yandex.ru/1.x/?lang=ru_RU&ll={coords[1]},{coords[0]}&spn={spn[0]/10},{spn[1]/10}&l=sat')
         img = pygame.image.load(BytesIO(response.content))
         screen2.fill(pygame.Color('black'))
         screen2.blit(img, (0,0))
